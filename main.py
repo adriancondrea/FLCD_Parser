@@ -1,7 +1,7 @@
 from grammar import Grammar
 
 if __name__ == '__main__':
-    g = Grammar.readGrammarFromFile('g1.txt')
+    g = Grammar.readGrammarFromFile('g2.txt')
     print(f'valid cfg: {Grammar.checkValidCFG(g.N, g.E, g.P, g.S)}')
     print(f'set of non-terminals is: {g.N}')
     print(f'set of terminals is: {g.E}')

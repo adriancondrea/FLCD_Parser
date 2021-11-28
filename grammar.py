@@ -13,22 +13,22 @@ class Grammar:
     @staticmethod
     def checkValidCFG(N, E, P, S):
         if S not in N:
+            print(f"{S} not in nonterminals!")
             return False
         for lhs in P.keys():
             if lhs not in N:
+                print(f"{lhs} not in nonterminals!")
                 return False
             for rhs in P[lhs]:
-                for char in rhs:
-                    if char not in N and char not in E and char != 'E':
+                for element in rhs.split(' '):
+                    if element not in N and element not in E and element != 'E':
+                        print(f"{element} not in N or E or = Epsilon!")
                         return False
         return True
 
     @staticmethod
     def parseLine(line):
-        tokens = line.strip().split('=')
-        if len(tokens) != 2:
-            print("Invalid line!")
-            return
+        tokens = line.strip().split('=', 1)
         return [element.strip() for element in tokens[1].strip().split(',')]
 
     @staticmethod
@@ -47,7 +47,7 @@ class Grammar:
         index = 1
 
         for rule in rules:
-            print('parsing rule ' + rule)
+            # print('parsing rule ' + rule)
             lhs, rhs = rule.split('->')
             lhs = lhs.strip()
             rhs = [value.strip() for value in rhs.strip().split('|')]

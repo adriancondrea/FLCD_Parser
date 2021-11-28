@@ -1,0 +1,19 @@
+N = program, declaration, type, compound_statement, statement, whilestmt, inputstmt, outputstmt, typedefstmt, assignstmt, ifstmt, elsestmt, whilestmt, condition, relations, tempCondition
+E = start!, end!, identifier, ;, usertype, integer, string, char, boolean, array, constant, typedef, =, if, :, else:, while, do:, ==, !=, <=, >=, <, >, input, output
+S = program
+P =
+    program -> start! declaration end! | start! compound_statement end!,
+    declaration -> type identifier ;,
+    type -> usertype | integer | string | char | boolean | array,
+    compound_statement -> statement | statement compound_statement,
+    statement -> inputstmt | outputstmt | typedefstmt | assignstmt | whilestmt | ifstmt | elsestmt,
+    inputstmt -> input identifier,
+    outputstmt -> output identifier | output constant,
+    typedefstmt -> typedef type identifier,
+    assignstmt -> identifier = constant | identifier = identifier,
+    ifstmt -> if condition : compound_statement | if condition : compound_statement else: elsestmt,
+    elsestmt -> compound_statement,
+    whilestmt -> while condition do: compound_statement,
+    condition -> tempCondition relations tempCondition,
+    relations -> == | != | <= | >= | < | >,
+    tempCondition -> identifier | constant
