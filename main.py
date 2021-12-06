@@ -1,4 +1,5 @@
 from grammar import Grammar
+from parser import Parser
 
 if __name__ == '__main__':
     g = Grammar.readGrammarFromFile('g1.txt')
