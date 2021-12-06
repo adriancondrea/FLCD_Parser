@@ -20,7 +20,7 @@ class Grammar:
                 print(f"{lhs} not in nonterminals!")
                 return False
             for rhs in P[lhs]:
-                for element in rhs.split(' '):
+                for element in rhs[0].split(' '):
                     if element not in N and element not in E and element != 'E':
                         print(f"{element} not in N or E or = Epsilon!")
                         return False
@@ -54,9 +54,9 @@ class Grammar:
 
             for value in rhs:
                 if lhs in result.keys():
-                    result[lhs].append(value)
+                    result[lhs].append((value, index))
                 else:
-                    result[lhs] = [value]
+                    result[lhs] = [(value, index)]
                 index += 1
 
         return result
