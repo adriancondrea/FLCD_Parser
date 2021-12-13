@@ -32,6 +32,8 @@ class Parser:
         else:
             print('message accepted!')
 
+        return self.working_stack
+
     def expand(self):
         print("expand")
         head = self.input_stack[0]

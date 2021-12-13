@@ -1,5 +1,6 @@
 from grammar import Grammar
 from parser import Parser
+from parser_output import ParserOutput
 
 
 def test_grammar():
@@ -72,6 +73,8 @@ def test_parse():
     parser = Parser(g, ['a', 'c', 'b', 'c'])
     print(parser)
     parser.parse()
+    parser_output = ParserOutput(parser)
+    print("Parser output is: ", parser_output.getDerivationString())
 
 
 if __name__ == '__main__':

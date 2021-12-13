@@ -10,6 +10,7 @@ class Grammar:
     P e un dictionar unde cheia e elementul din stanga al production-ului (lhs), iar valoarea e o lista a elementelor din dreapta [rhs]
     Verificam ca left hand side-ul sa fie un non-terminal, iar fiecare element din rhs sa fie fie terminal, non-terminal sau epsilon.
     '''
+
     @staticmethod
     def checkValidCFG(N, E, P, S):
         if S not in N:
@@ -60,3 +61,8 @@ class Grammar:
                 index += 1
 
         return result
+
+    def getProduction(self, production):
+        symbol = production[0]
+        index = production[1] - 1
+        return self.P[symbol][index][0].split(' ')
