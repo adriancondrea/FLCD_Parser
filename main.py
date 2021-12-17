@@ -78,6 +78,16 @@ def test_parse():
     print("Parser output is: ", parser_output.getDerivationString())
 
 
+def read_from_file(filename='pif.out'):
+    input_list = []
+    with open(filename, 'r') as reader:
+        for line in reader:
+            input_list.append(line.strip())
+
+    return input_list
+
+
 if __name__ == '__main__':
     # test_parser_methods()
+    # print(read_from_file())
     test_parse()
