@@ -1,0 +1,7 @@
+S ->
+a S b S ->
+a a S b S b S ->
+a a c b S b S ->
+a a c b c b S ->
+a a c b c b c
+is accepted: True

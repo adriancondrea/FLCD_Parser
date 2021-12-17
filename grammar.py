@@ -7,12 +7,14 @@ class Grammar:
 
     #     P = {"A": ...}
     '''
-    P e un dictionar unde cheia e elementul din stanga al production-ului (lhs), iar valoarea e o lista a elementelor din dreapta [rhs]
-    Verificam ca left hand side-ul sa fie un non-terminal, iar fiecare element din rhs sa fie fie terminal, non-terminal sau epsilon.
+    P is a dictionary where the key is the production's left element (lhs), and the value is the list of elements
+    from the right [rhs].
+    We verify that the lhs is a non-terminal, and for each element in rhs we check that it is either a terminal, a
+    non-terminal, or epsilon.
     '''
 
     @staticmethod
-    def checkValidCFG(N, E, P, S):
+    def check_valid_cfg(N, E, P, S):
         if S not in N:
             print(f"{S} not in nonterminals!")
             return False
@@ -28,22 +30,22 @@ class Grammar:
         return True
 
     @staticmethod
-    def parseLine(line):
+    def parse_line(line):
         tokens = line.strip().split('=', 1)
         return [element.strip() for element in tokens[1].strip().split(',')]
 
     @staticmethod
-    def readGrammarFromFile(filename):
+    def read_grammar_from_file(filename):
         with open(filename, 'r') as file:
-            N = Grammar.parseLine(file.readline())
-            E = Grammar.parseLine(file.readline())
-            S = Grammar.parseLine(file.readline()).pop()
-            P = Grammar.parseRules(Grammar.parseLine(''.join([line for line in file])))
+            N = Grammar.parse_line(file.readline())
+            E = Grammar.parse_line(file.readline())
+            S = Grammar.parse_line(file.readline()).pop()
+            P = Grammar.parse_rules(Grammar.parse_line(''.join([line for line in file])))
 
             return Grammar(N, E, P, S)
 
     @staticmethod
-    def parseRules(rules):
+    def parse_rules(rules):
         result = {}
 
         for rule in rules:
@@ -60,7 +62,7 @@ class Grammar:
 
         return result
 
-    def getProduction(self, production):
+    def get_production(self, production):
         symbol = production[0]
         index = production[1] - 1
         return self.P[symbol][index][0].split(' ')

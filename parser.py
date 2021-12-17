@@ -8,6 +8,7 @@ class Parser:
         self.input_stack = [self.starting_symbol]
         self.input_string = input_string
         self.input_string_initial_length = len(input_string)
+        self.accepted = False
 
     def parse(self):
         while self.s != 'f' and self.s != 'e':
@@ -32,6 +33,7 @@ class Parser:
             print('error!')
         else:
             print('message accepted!')
+            self.accepted = True
 
         return self.working_stack
 
@@ -82,9 +84,6 @@ class Parser:
         if head in self.grammar.N:
             print('another try')
             productionRules = self.grammar.P[head]
-            # if len(productionRules) <= production_index:
-            #     print('no other productions left!')
-            #     return
             next_production = []
             current_production = []
 
@@ -126,3 +125,6 @@ class Parser:
 
     def __str__(self):
         return f"({self.s}, {self.i}, {self.working_stack}, {self.input_stack})"
+
+    def is_accepted(self):
+        return self.accepted

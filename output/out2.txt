@@ -1,0 +1,28 @@
+program ->
+start! compound_statement end! ->
+start! statement compound_statement end! ->
+start! declaration compound_statement end! ->
+start! type identifier ; compound_statement end! ->
+start! integer identifier ; compound_statement end! ->
+start! integer identifier ; statement compound_statement end! ->
+start! integer identifier ; declaration compound_statement end! ->
+start! integer identifier ; type identifier ; compound_statement end! ->
+start! integer identifier ; integer identifier ; compound_statement end! ->
+start! integer identifier ; integer identifier ; statement compound_statement end! ->
+start! integer identifier ; integer identifier ; inputstmt compound_statement end! ->
+start! integer identifier ; integer identifier ; input identifier ; compound_statement end! ->
+start! integer identifier ; integer identifier ; input identifier ; statement compound_statement end! ->
+start! integer identifier ; integer identifier ; input identifier ; inputstmt compound_statement end! ->
+start! integer identifier ; integer identifier ; input identifier ; input identifier ; compound_statement end! ->
+start! integer identifier ; integer identifier ; input identifier ; input identifier ; statement compound_statement end! ->
+start! integer identifier ; integer identifier ; input identifier ; input identifier ; assignstmt compound_statement end! ->
+start! integer identifier ; integer identifier ; input identifier ; input identifier ; identifier = arithmeticstmt ; compound_statement end! ->
+start! integer identifier ; integer identifier ; input identifier ; input identifier ; identifier = value operation value ; compound_statement end! ->
+start! integer identifier ; integer identifier ; input identifier ; input identifier ; identifier = identifier operation value ; compound_statement end! ->
+start! integer identifier ; integer identifier ; input identifier ; input identifier ; identifier = identifier + value ; compound_statement end! ->
+start! integer identifier ; integer identifier ; input identifier ; input identifier ; identifier = identifier + identifier ; compound_statement end! ->
+start! integer identifier ; integer identifier ; input identifier ; input identifier ; identifier = identifier + identifier ; statement end! ->
+start! integer identifier ; integer identifier ; input identifier ; input identifier ; identifier = identifier + identifier ; outputstmt end! ->
+start! integer identifier ; integer identifier ; input identifier ; input identifier ; identifier = identifier + identifier ; output value ; end! ->
+start! integer identifier ; integer identifier ; input identifier ; input identifier ; identifier = identifier + identifier ; output identifier ; end!
+is accepted: True

@@ -4,8 +4,8 @@ from parser_output import ParserOutput
 
 
 def test_grammar():
-    g = Grammar.readGrammarFromFile('g2.txt')
-    print(f'valid cfg: {Grammar.checkValidCFG(g.N, g.E, g.P, g.S)}')
+    g = Grammar.read_grammar_from_file('input/grammars/g2.txt')
+    print(f'valid cfg: {Grammar.check_valid_cfg(g.N, g.E, g.P, g.S)}')
     print(f'set of non-terminals is: {g.N}')
     print(f'set of terminals is: {g.E}')
     print('set of production rules is: ')
@@ -17,7 +17,7 @@ def test_grammar():
 
 
 def test_parser_methods():
-    g = Grammar.readGrammarFromFile('g1.txt')
+    g = Grammar.read_grammar_from_file('input/grammars/g1.txt')
 
     print("test expand: ")
     parser = Parser(g, ['a', 'b', 'a', 'c'])
@@ -68,17 +68,20 @@ def test_parser_methods():
     print(parser, '\n')
 
 
-def test_parse():
-    g = Grammar.readGrammarFromFile('g2_simplified.txt')
-    g2_input = read_from_file('pif2.out')
-    parser = Parser(g, g2_input, g.S)
+def test_parse(grammar_path, input_sequence_path, output_path):
+    g = Grammar.read_grammar_from_file(grammar_path)
+    input_sequence = read_from_file(input_sequence_path)
+
+    parser = Parser(g, input_sequence, g.S)
     print(parser)
     parser.parse()
     parser_output = ParserOutput(parser)
-    print("Parser output is: ", parser_output.getDerivationString())
+    print("Parser output is: ", parser_output.compute_derivation_string())
+
+    parser_output.write_derivation_list_to_file(parser.is_accepted(), output_path)
 
 
-def read_from_file(filename='pif.out'):
+def read_from_file(filename):
     input_list = []
     with open(filename, 'r') as reader:
         for line in reader:
@@ -90,4 +93,5 @@ def read_from_file(filename='pif.out'):
 if __name__ == '__main__':
     # test_parser_methods()
     # print(read_from_file())
-    test_parse()
+    test_parse('input/grammars/g1.txt', 'input/sequences/seq.txt', 'output/out1.txt')
+    test_parse('input/grammars/g2_simplified.txt', 'input/sequences/pif.out', 'output/out2.txt')
