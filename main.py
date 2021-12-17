@@ -4,7 +4,7 @@ from parser_output import ParserOutput
 
 
 def test_grammar():
-    g = Grammar.readGrammarFromFile('g1.txt')
+    g = Grammar.readGrammarFromFile('g2.txt')
     print(f'valid cfg: {Grammar.checkValidCFG(g.N, g.E, g.P, g.S)}')
     print(f'set of non-terminals is: {g.N}')
     print(f'set of terminals is: {g.E}')
@@ -69,8 +69,9 @@ def test_parser_methods():
 
 
 def test_parse():
-    g = Grammar.readGrammarFromFile('g1.txt')
-    parser = Parser(g, ['a', 'c', 'b', 'c'])
+    g = Grammar.readGrammarFromFile('g2_simplified.txt')
+    g2_input = read_from_file('pif2.out')
+    parser = Parser(g, g2_input, g.S)
     print(parser)
     parser.parse()
     parser_output = ParserOutput(parser)

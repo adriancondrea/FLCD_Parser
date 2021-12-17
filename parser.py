@@ -1,10 +1,11 @@
 class Parser:
-    def __init__(self, grammar, input_string):
+    def __init__(self, grammar, input_string, starting_symbol='S'):
+        self.starting_symbol = starting_symbol
         self.grammar = grammar
         self.s = 'q'
         self.i = 1
         self.working_stack = []
-        self.input_stack = ["S"]
+        self.input_stack = [self.starting_symbol]
         self.input_string = input_string
         self.input_string_initial_length = len(input_string)
 
@@ -102,8 +103,8 @@ class Parser:
                 self.input_stack.pop(0)
 
             if not next_production:
-                if self.i == 1 and head == 'S':
-                    print('S is the first symbol, and no more productions found. Error state!')
+                if self.i == 1 and head == self.starting_symbol:
+                    print('Starting symbol is the first symbol, and no more productions found. Error state!')
                     self.s = 'e'
                     return
                 self.s = 'b'

@@ -1,0 +1,15 @@
+N = program, declaration, type, compound_statement, statement, inputstmt, assignstmt, relations, arithmeticstmt, operation, value, outputstmt
+E = start!, end!, identifier, ;, integer, constant, =, :, input, output, +, -, *
+S = program
+P =
+    program -> start! end! | start! compound_statement end!,
+    declaration -> type identifier ;,
+    type -> integer,
+    compound_statement -> statement | statement compound_statement,
+    statement -> declaration | inputstmt | assignstmt | outputstmt,
+    inputstmt -> input identifier ;,
+    outputstmt -> output value ;,
+    assignstmt -> identifier = value ; | identifier = arithmeticstmt ;,
+    arithmeticstmt -> value operation value | value operation arithmeticstmt,
+    operation -> + | - | *,
+    value -> identifier | constant

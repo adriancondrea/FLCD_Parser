@@ -45,7 +45,6 @@ class Grammar:
     @staticmethod
     def parseRules(rules):
         result = {}
-        index = 1
 
         for rule in rules:
             # print('parsing rule ' + rule)
@@ -55,10 +54,9 @@ class Grammar:
 
             for value in rhs:
                 if lhs in result.keys():
-                    result[lhs].append((value, index))
+                    result[lhs].append((value, len(result[lhs]) + 1))
                 else:
-                    result[lhs] = [(value, index)]
-                index += 1
+                    result[lhs] = [(value, 1)]
 
         return result
 

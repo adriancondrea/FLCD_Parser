@@ -9,7 +9,7 @@ class ParserOutput:
 
     def getDerivationString(self):
         derivation_list = []
-        current_derivation = ['S']
+        current_derivation = [self.parser.grammar.S]
         parser_output = copy.deepcopy(self.parser.working_stack)
         while parser_output:
             symbol = parser_output[0][0]
