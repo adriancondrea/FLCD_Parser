@@ -7,7 +7,6 @@ class ParserOutput:
     def __init__(self, parser: Parser):
         self.parser = parser
         self.derivation_list = []
-        self.derivation_string = ""
 
     def compute_derivation_string(self):
         self.derivation_list = []
